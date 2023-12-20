@@ -1,6 +1,22 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+var currentDayEl = $('#currentDay');
+var hour9 = $('#hour-9');
+var hour10 = $('#hour-10');
+var hour11 = $('#hour-11');
+var hour12 = $('#hour-12');
+var hour13 = $('#hour-13');
+var hour14 = $('#hour-14');
+var hour15 = $('#hour-15');
+var hour16 = $('#hour-16');
+var hour17 = $('#hour-17');
+
+//Other Variables
+var today = dayjs();
+
+//Sets the current Day and Time to display in header.
+$(function() {
+  $('#currentDay').text(today.format('dddd MMMM D, YYYY HH:mm:ss a'));
+});
+
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
