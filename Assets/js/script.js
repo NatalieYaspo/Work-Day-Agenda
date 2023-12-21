@@ -36,42 +36,82 @@ $( function() {
 //   localStorage.setItem('newDescription', JSON.stringify(newDescription));
 // });
 
+
+
 saveBtn.on('click', function(event) {
   event.preventDefault();
+  // console.log('clicked');
+  var saveTmBtn = $('#' + saveBtn)
   var newDescription = $('.description').val();
   localStorage.setItem('newDescription', JSON.stringify(newDescription));
 });
+
+
+// showTasks();
+
 
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
+
 //Needs to add proper class to times for past, present and future.  Need to find a way to for loop this.
-// $('.time-block').each(function() {
-//     var hourXX = $(this).attr('id');
-//     var blockHour = parseInt(hourXX).split("-");
-//     console.log(blockHour);
-// });
+var blockHour = "";
+
+$('.time-block').each(function() {
+    var hourXX = $(this).attr('id');
+    // console.log(hourXX);
+    blockHour = hourXX.split("-")[1];
+    // console.log(blockHour);
+    var blockLink = $('#' + hourXX);
+    // console.log(blockLink);
+    if (blockHour < today.format('HH')) {
+      // console.log(today.format('HH'));
+      blockLink.addClass('past');
+      blockLink.removeClass('present');
+      blockLink.removeClass('future');
+    } else if (blockHour === today.format('HH')) {
+      blockLink.removeClass('past');
+      blockLink.addClass('present');
+      blockLink.removeClass('future');
+    } else if (blockHour > today.format('HH')) {
+      blockLink.removeClass('past');
+      blockLink.removeClass('present');
+      blockLink.addClass('future');
+    }
+});
 
 
 //   for (var i = 0; i < blockHour +1; i++) {
 //     if (blockHour < today.format('HH')) {
+//       console.log(blockHour);
+//       console.log(today.format('HH'));
 //       blockHour.addclass('past');
+//       blockHour.removeclass('present');
+//       blockHour.removeclass('future');
 //     } else if (blockHour === today.format('HH')) {
+//       blockHour.removeclass('past');
 //       blockHour.addclass('present');
+//       blockHour.removeclass('future');
 //     } else if (blockHour > today.format('HH')) {
+//       blockHour.removeclass('past');
+//       blockHour.removeclass('present');
 //       blockHour.addclass('future');
 //     }
-//   }
-// });
+// };
 
-$(function () {
 
-  //
-
-  //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-});
+// $( showTasks () {
+//   var savedTasks = JSON.parse(localStorage.getItem('newDescription', ));
+//     $('.time-block').each(function() {
+//       $(this).attr('id').text(savedTasks);
+//     }
+//     )
+
+
+  
+// });
