@@ -28,6 +28,9 @@ When a timeblock is selected, the user can enter an event and save the entry to 
 Starter Code Received From:
 https://git.bootcampcontent.com/UNC-Charlotte/UNCC-VIRT-FSF-FT-12-2023-U-LOLC
 
+Collaborated with:
+Le, Roger via Zoom on 12/21/2023
+
 ## License
 
 None needed.
