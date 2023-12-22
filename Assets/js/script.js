@@ -10,11 +10,10 @@ var hour15 = $('#hour-15');
 var hour16 = $('#hour-16');
 var hour17 = $('#hour-17');
 var saveBtn = $('.saveBtn');
+var descriptionInputEl = $('.description');
 
-//Other Variables
+//Sets the basis for today's date.
 var today = dayjs();
-
-
 
 //Sets the current Day and Time to display in header.
 $( function() {
@@ -22,85 +21,72 @@ $( function() {
 });
 // console.log(today.format('HH'));
 
-  // TODO: Add a listener for click events on the save button. This code should
+
+
+  // TODO: This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
+  // function?  How might the id be
   // useful when saving the description in local storage?
 $( function() {
 
 });
 
-// $(function saveDescription(newDescription) {
-//   localStorage.setItem('newDescription', JSON.stringify(newDescription));
-// });
+//Read user input for item description:
+var newDescription = descriptionInputEl.val().trim();
 
+ 
+  function saveDescriptionToStorage(newDescription) {
+localStorage.setItem('newDescription', JSON.stringify(newDescription));//Is not saving my description
+  };
 
-
+//When save button is clicked, the new event is logged in to local storage.
 saveBtn.on('click', function(event) {
   event.preventDefault();
   // console.log('clicked');
-  var saveTmBtn = $('#' + saveBtn)
-  var newDescription = $('.description').val();
-  localStorage.setItem('newDescription', JSON.stringify(newDescription));
+  //Finds which timeslot the save button was pushed on.
+  var saveTmBtn = $(this).parent().attr('id');
+  // console.log(saveTmBtn);
+  //Saves which timeslot the Save button was pushed on.
+  localStorage.setItem('saveTmBtn', JSON.stringify(saveTmBtn));
+  saveDescriptionToStorage();
 });
 
 
 // showTasks();
 
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-
-//Needs to add proper class to times for past, present and future.  Need to find a way to for loop this.
+//Past, Preset, or Future classes are added according to the current time.
 var blockHour = "";
 
 $('.time-block').each(function() {
+  //Getting the ID for each time block.
     var hourXX = $(this).attr('id');
     // console.log(hourXX);
+    //Splitting the name of the block hour-xx by the - and taking only what is after the -.
     blockHour = hourXX.split("-")[1];
     // console.log(blockHour);
+    //Creating a link back to the ID to change the classes later on.
     var blockLink = $('#' + hourXX);
     // console.log(blockLink);
+    //If this hour has past, it changes to the Past color.
     if (blockHour < today.format('HH')) {
       // console.log(today.format('HH'));
       blockLink.addClass('past');
       blockLink.removeClass('present');
       blockLink.removeClass('future');
+      //If this hour is current, it changes to the current color.
     } else if (blockHour === today.format('HH')) {
       blockLink.removeClass('past');
       blockLink.addClass('present');
       blockLink.removeClass('future');
+      //If this hour has not yet happened, it is the future color.
     } else if (blockHour > today.format('HH')) {
       blockLink.removeClass('past');
       blockLink.removeClass('present');
       blockLink.addClass('future');
     }
 });
-
-
-//   for (var i = 0; i < blockHour +1; i++) {
-//     if (blockHour < today.format('HH')) {
-//       console.log(blockHour);
-//       console.log(today.format('HH'));
-//       blockHour.addclass('past');
-//       blockHour.removeclass('present');
-//       blockHour.removeclass('future');
-//     } else if (blockHour === today.format('HH')) {
-//       blockHour.removeclass('past');
-//       blockHour.addclass('present');
-//       blockHour.removeclass('future');
-//     } else if (blockHour > today.format('HH')) {
-//       blockHour.removeclass('past');
-//       blockHour.removeclass('present');
-//       blockHour.addclass('future');
-//     }
-// };
-
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
