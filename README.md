@@ -12,16 +12,16 @@ URL: https://natalieyaspo.github.io/Work-Day-Agenda/
 
 When the application is opened, the user is shown the current day at the top.
 
-<img src="..." alt="Agenda screen with today's date.">
+<img src="./Assets/images/TodaysDateAndTimeSnap.jpg" alt="Agenda screen with today's date.">
 
 Scrolling through the application shows time blocks for each hour of the day.
 The hours are color coded based on past, present or future.
 
-<img src="..." alt="Blocks for each hour appear with different colors for past, present and future hours.">
+<img src="./Assets/images/ColorBlockByHourSnap.jpg" alt="Blocks for each hour appear with different colors for past, present and future hours.">
 
 When a timeblock is selected, the user can enter an event and save the entry to local storage.
 
-<img src="..." alt="Agenda screen data in a time block.">
+<img src="./Assets/images/AgendaItemsSavedSnap.jpg" alt="Agenda screen data in a time block.">
 
 ## Credits
 
