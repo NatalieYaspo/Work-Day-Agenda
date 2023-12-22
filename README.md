@@ -30,6 +30,7 @@ https://git.bootcampcontent.com/UNC-Charlotte/UNCC-VIRT-FSF-FT-12-2023-U-LOLC
 
 Collaborated with:
 Le, Roger via Zoom on 12/21/2023
+Elliott, Jared via Zoom on 12/21/2023
 
 ## License
 
