@@ -6,7 +6,7 @@ This is a simple calendar application that allows the user to save events for ea
 
 ## Installation
 
-URL: 
+URL: https://natalieyaspo.github.io/Work-Day-Agenda/
 
 ## Usage
 
@@ -17,11 +17,11 @@ When the application is opened, the user is shown the current day at the top.
 Scrolling through the application shows time blocks for each hour of the day.
 The hours are color coded based on past, present or future.
 
-<img src="..." alt="Agenda screen with today's date.">
+<img src="..." alt="Blocks for each hour appear with different colors for past, present and future hours.">
 
 When a timeblock is selected, the user can enter an event and save the entry to local storage.
 
-<img src="..." alt="Agenda screen with today's date.">
+<img src="..." alt="Agenda screen data in a time block.">
 
 ## Credits
 
