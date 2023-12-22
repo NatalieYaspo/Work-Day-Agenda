@@ -22,38 +22,20 @@ $( function() {
 // console.log(today.format('HH'));
 
 
-
-  // TODO: This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function?  How might the id be
-  // useful when saving the description in local storage?
-$( function() {
-
-});
-
-//Read user input for item description:
-var newDescription = descriptionInputEl.val().trim();
-
- 
-  function saveDescriptionToStorage(newDescription) {
-localStorage.setItem('newDescription', JSON.stringify(newDescription));//Is not saving my description
-  };
-
 //When save button is clicked, the new event is logged in to local storage.
 saveBtn.on('click', function(event) {
   event.preventDefault();
   // console.log('clicked');
   //Finds which timeslot the save button was pushed on.
   var saveTmBtn = $(this).parent().attr('id');
+  //Read user input for item description:
+  var newDescription = $('#' + saveTmBtn).find('textarea').val();
+  // console.log($('#' + saveTmBtn).find('textarea').val());
   // console.log(saveTmBtn);
   //Saves which timeslot the Save button was pushed on.
-  localStorage.setItem('saveTmBtn', JSON.stringify(saveTmBtn));
-  saveDescriptionToStorage();
+  localStorage.setItem(saveTmBtn, newDescription);
 });
 
-
-// showTasks();
 
 
 //Past, Preset, or Future classes are added according to the current time.
@@ -63,12 +45,17 @@ $('.time-block').each(function() {
   //Getting the ID for each time block.
     var hourXX = $(this).attr('id');
     // console.log(hourXX);
+    var storedAgendas = localStorage.getItem(hourXX);
+    // console.log(storedAgendas);
+    $(this).find('textarea').val(storedAgendas);
     //Splitting the name of the block hour-xx by the - and taking only what is after the -.
     blockHour = hourXX.split("-")[1];
     // console.log(blockHour);
+    
     //Creating a link back to the ID to change the classes later on.
     var blockLink = $('#' + hourXX);
     // console.log(blockLink);
+
     //If this hour has past, it changes to the Past color.
     if (blockHour < today.format('HH')) {
       // console.log(today.format('HH'));
