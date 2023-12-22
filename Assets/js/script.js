@@ -26,12 +26,15 @@ $( function() {
 saveBtn.on('click', function(event) {
   event.preventDefault();
   // console.log('clicked');
+
   //Finds which timeslot the save button was pushed on.
   var saveTmBtn = $(this).parent().attr('id');
+
   //Read user input for item description:
   var newDescription = $('#' + saveTmBtn).find('textarea').val();
   // console.log($('#' + saveTmBtn).find('textarea').val());
   // console.log(saveTmBtn);
+
   //Saves which timeslot the Save button was pushed on.
   localStorage.setItem(saveTmBtn, newDescription);
 });
@@ -41,20 +44,26 @@ saveBtn.on('click', function(event) {
 //Past, Preset, or Future classes are added according to the current time.
 var blockHour = "";
 
+//This will run through each Time Block to set any agenda items that have been saved and update the colors of the blocks based on current time.
 $('.time-block').each(function() {
   //Getting the ID for each time block.
     var hourXX = $(this).attr('id');
     // console.log(hourXX);
-    var storedAgendas = localStorage.getItem(hourXX);
-    // console.log(storedAgendas);
-    $(this).find('textarea').val(storedAgendas);
+
     //Splitting the name of the block hour-xx by the - and taking only what is after the -.
     blockHour = hourXX.split("-")[1];
     // console.log(blockHour);
-    
+
     //Creating a link back to the ID to change the classes later on.
     var blockLink = $('#' + hourXX);
     // console.log(blockLink);
+
+    //Getting any stored agenda items out of local storage for each time block.
+    var storedAgendas = localStorage.getItem(hourXX);
+    // console.log(storedAgendas);
+
+    //Updating the textarea for each time block with the appropriate stored agenda items.
+    $(this).find('textarea').val(storedAgendas);
 
     //If this hour has past, it changes to the Past color.
     if (blockHour < today.format('HH')) {
@@ -62,11 +71,13 @@ $('.time-block').each(function() {
       blockLink.addClass('past');
       blockLink.removeClass('present');
       blockLink.removeClass('future');
+
       //If this hour is current, it changes to the current color.
     } else if (blockHour === today.format('HH')) {
       blockLink.removeClass('past');
       blockLink.addClass('present');
       blockLink.removeClass('future');
+
       //If this hour has not yet happened, it is the future color.
     } else if (blockHour > today.format('HH')) {
       blockLink.removeClass('past');
@@ -74,17 +85,3 @@ $('.time-block').each(function() {
       blockLink.addClass('future');
     }
 });
-
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-// $( showTasks () {
-//   var savedTasks = JSON.parse(localStorage.getItem('newDescription', ));
-//     $('.time-block').each(function() {
-//       $(this).attr('id').text(savedTasks);
-//     }
-//     )
-
-
-  
-// });
